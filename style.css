@@ -26,7 +26,10 @@ body.qra-enabled .qrq-wrapper-visible #custom_buttons_container {
 }
 
 /* 非合并模式 */
-body.qra-enabled #qr--bar > .qrq-whitelisted-original:not(.qrq-wrapper-visible),
+/* 内置工具栏（#input_helper_toolbar / #custom_buttons_container）由各自扩展的样式表负责布局，
+   本规则只负责让它们“保持可见”。若让它们命中，会被强制 display:flex + gap + align-items，
+   从而改写工具条自身的对齐方式（center 会让按钮不再被拉伸、而是垂直居中）。因此显式排除。 */
+body.qra-enabled #qr--bar > .qrq-whitelisted-original:not(.qrq-wrapper-visible):not(#input_helper_toolbar):not(#custom_buttons_container),
 body.qra-enabled #qr--bar > div[id^="script_container_"].qrq-whitelisted-original {
      display: flex !important;
      gap: 5px; 
